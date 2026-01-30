@@ -346,7 +346,7 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
     id: "facebook", 
     label: "Facebook", 
     icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/facebook.svg", // شعار Facebook الرسمي 
-    keys: ["facebook","فايسبوك","fb","فيس بوك","فايس بوك"],
+    keys: ["facebook","فايسبوك","fb","فيس بوك","فايس بوك","فيسبوك"],
     subGroups: [
       { id: "followers", label: "متابعين", keys: ["followers","متابع","متابعين"] },
       { id: "likes", label: "لايكات على منشور", keys: ["likes","like","لايكات","لايك","اعجاب","اعجابات"] },
