@@ -346,11 +346,11 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
     id: "facebook", 
     label: "Facebook", 
     icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/facebook.svg", // شعار Facebook الرسمي 
-    keys: ["facebook","فايسبوك","fb","فيس بوك","فايس بوك","فيسبوك"],
+    keys: ["facebook","فايسبوك","fb","فيس بوك","فايس بوك","فيسبوك","لايكات على تعليق فيسبوك"],
     subGroups: [
       { id: "followers", label: "متابعين", keys: ["followers","متابع","متابعين"] },
       { id: "likes", label: "لايكات على منشور", keys: ["likes","like","لايكات","لايك","اعجاب","اعجابات"] },
-      { id: "comment likes", label: "لايكات على تعليق", keys: ["comment likes","comment like"] },
+      { id: "comment likes", label: "لايكات على تعليق", keys: ["comment likes","comment like","لايكات على تعليق فيسبوك"] },
       { id: "views", label: "مشاهدات", keys: ["views","مشاهدة","مشاهدات"] },
       { id: "comments", label: "تعليقات", keys: ["comments","تعليق"] },
       { id: "stories", label: "ستوري", keys: ["story","stories","ستوري"] }
