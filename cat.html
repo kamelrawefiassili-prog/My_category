@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>مدير تصنيفات متجرك - تحديث مباشر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0d1117; --card: #161b22; --border: #30363d;
+            --text: #c9d1d9; --primary: #238636; --info: #1f6feb; --danger: #f85149;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 20px; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 20px; margin-bottom: 30px; }
+        
+        /* بطاقات التصنيفات */
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
+        .cat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; transition: 0.3s; }
+        .cat-card:hover { transform: translateY(-5px); border-color: var(--info); }
+        .cat-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .cat-img { width: 60px; height: 60px; object-fit: contain; border-radius: 8px; background: white; padding: 5px; }
+        .cat-icon-fa { font-size: 50px; color: var(--info); }
+        
+        /* تفاصيل التصنيف */
+        .badge { background: #21262d; padding: 2px 8px; border-radius: 4px; font-size: 12px; border: 1px solid var(--border); margin-right: 5px; }
+        .subgroups-preview { margin-top: 10px; font-size: 0.85em; color: #8b949e; }
+        
+        /* الأزرار */
+        .btn { cursor: pointer; border: none; border-radius: 6px; padding: 10px 20px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; color: white; transition: 0.2s; }
+        .btn-add { background: var(--primary); }
+        .btn-edit { background: var(--info); }
+        .btn-delete { background: var(--danger); }
+        .btn-save { background: var(--primary); width: 100%; justify-content: center; font-size: 1.1em; }
+        
+        /* المودال */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; }
+        .modal-content { background: var(--card); max-width: 700px; margin: 30px auto; padding: 30px; border-radius: 12px; border: 1px solid var(--border); max-height: 90vh; overflow-y: auto; }
+        
+        label { display: block; margin: 15px 0 5px; font-weight: bold; color: #58a6ff; }
+        input, textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); color: white; padding: 12px; border-radius: 6px; box-sizing: border-box; }
+        
+        .subgroup-box { background: #21262d; border: 1px solid var(--border); padding: 15px; border-radius: 8px; margin-bottom: 15px; position: relative; }
+        
+        #loadingOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; justify-content: center; align-items: center; flex-direction: column; }
+        .spinner { width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid var(--info); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+<div id="loadingOverlay">
+    <div class="spinner"></div>
+    <p>جاري تحديث GitHub...</p>
+</div>
+
+<div class="container">
+    <div class="header">
+        <h1><i class="fa-solid fa-store"></i> مدير تصنيفات categorie1.js</h1>
+        <button class="btn btn-add" onclick="openModal('add')"><i class="fa-solid fa-plus"></i> إضافة تصنيف جديد</button>
+    </div>
+
+    <div id="categoryContainer" class="category-grid">
+        </div>
+</div>
+
+<div id="catModal" class="modal">
+    <div class="modal-content">
+        <h2 id="modalTitle">إضافة تصنيف</h2>
+        <input type="hidden" id="editIndex">
+
+        <label>ID (المعرف البرمجي)</label>
+        <input type="text" id="catId" placeholder="مثل: pubg_mobile">
+
+        <label>Label (الاسم الذي يظهر للعملاء)</label>
+        <input type="text" id="catLabel" placeholder="مثل: PUBG Mobile">
+
+        <label>Icon (رابط الشعار أو كلاس FontAwesome)</label>
+        <input type="text" id="catIcon" placeholder="https://... أو fa-brands fa-whatsapp">
+
+        <label>Keys (الكلمات المفتاحية - افصل بفاصلة)</label>
+        <textarea id="catKeys" placeholder="ببجي, شدات, uc, pubg"></textarea>
+
+        <label>Description (الوصف)</label>
+        <input type="text" id="catDesc" placeholder="وصف يظهر تحت الاسم">
+
+        <div style="margin: 20px 0;">
+            <input type="checkbox" id="catSingle" style="width: auto;"> 
+            <label style="display: inline; color: #fff;">Single Account (شحن مباشر لحساب واحد؟)</label>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 15px;">
+            <h3>المجموعات الفرعية (SubGroups)</h3>
+            <button class="btn btn-edit" style="padding: 5px 10px; font-size: 0.8em;" onclick="addSubGroupRow()">+ إضافة فرع</button>
+        </div>
+        
+        <div id="subgroupsList"></div>
+
+        <div style="display: flex; gap: 10px; margin-top: 30px;">
+            <button class="btn btn-save" onclick="saveToGitHub()">حفظ وإرسال إلى GitHub</button>
+            <button class="btn btn-delete" onclick="closeModal()">إلغاء</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // الإعدادات (التوكن الخاص بك مدمج هنا كما طلبت)
+    const GH_CONFIG = {
+        token: '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',
+        owner: 'kamelrawefiassili-prog',
+        repo: 'My_category',
+        path: 'categorie1.js'
+    };
+
+    let categories = [];
+    let fileSHA = "";
+
+    // تشفير وفك تشفير UTF-8
+    const toB64 = (str) => btoa(unescape(encodeURIComponent(str)));
+    const fromB64 = (str) => decodeURIComponent(escape(atob(str)));
+
+    // جلب البيانات عند فتح الصفحة
+    async function init() {
+        showLoading(true);
+        try {
+            const url = `https://api.github.com/repos/${GH_CONFIG.owner}/${GH_CONFIG.repo}/contents/${GH_CONFIG.path}`;
+            const res = await fetch(url, { headers: { 'Authorization': `token ${GH_CONFIG.token}` } });
+            const data = await res.json();
+            fileSHA = data.sha;
+            
+            const content = fromB64(data.content);
+            // استخراج المصفوفة فقط من الملف
+            const regex = /const\s+FIXED_CATEGORIES\s*=\s*([\s\S]*?);/;
+            const match = content.match(regex);
+            
+            if (match) {
+                // استخدام Function بدلاً من eval للأمان ولتحويل النص لكائن
+                categories = new Function(`return ${match[1]}`)();
+                renderUI();
+            }
+        } catch (e) {
+            alert("خطأ في جلب الملف: " + e.message);
+        }
+        showLoading(false);
+    }
+
+    function renderUI() {
+        const container = document.getElementById('categoryContainer');
+        container.innerHTML = "";
+        
+        categories.forEach((cat, index) => {
+            const card = document.createElement('div');
+            card.className = 'cat-card';
+            
+            const iconHtml = cat.icon.startsWith('http') 
+                ? `<img src="${cat.icon}" class="cat-img">` 
+                : `<i class="${cat.icon} cat-icon-fa"></i>`;
+
+            card.innerHTML = `
+                <div class="cat-header">
+                    ${iconHtml}
+                    <div>
+                        <strong>${cat.label}</strong><br>
+                        <small style="color:var(--info)">ID: ${cat.id}</small>
+                    </div>
+                </div>
+                <div style="font-size:0.85em; margin-bottom:10px;">${cat.description || ''}</div>
+                <div>
+                    ${cat.keys.slice(0, 3).map(k => `<span class="badge">${k}</span>`).join('')}
+                    ${cat.keys.length > 3 ? '<span class="badge">...</span>' : ''}
+                </div>
+                <div class="subgroups-preview">
+                    <i class="fa-solid fa-list-ul"></i> المجموعات: ${cat.subGroups ? cat.subGroups.length : 0}
+                </div>
+                <div class="actions" style="margin-top:20px; display:flex; gap:10px;">
+                    <button class="btn btn-edit" style="flex:1" onclick="openModal('edit', ${index})"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-delete" style="flex:1" onclick="deleteCategory(${index})"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function openModal(mode, index = null) {
+        const modal = document.getElementById('catModal');
+        const list = document.getElementById('subgroupsList');
+        list.innerHTML = "";
+        modal.style.display = 'block';
+
+        if (mode === 'edit') {
+            const c = categories[index];
+            document.getElementById('editIndex').value = index;
+            document.getElementById('catId').value = c.id;
+            document.getElementById('catLabel').value = c.label;
+            document.getElementById('catIcon').value = c.icon;
+            document.getElementById('catKeys').value = c.keys.join(', ');
+            document.getElementById('catDesc').value = c.description || "";
+            document.getElementById('catSingle').checked = !!c.singleAccount;
+            
+            if (c.subGroups) {
+                c.subGroups.forEach(s => addSubGroupRow(s));
+            }
+        } else {
+            document.getElementById('editIndex').value = "";
+            document.getElementById('catId').value = "";
+            document.getElementById('catLabel').value = "";
+            document.getElementById('catIcon').value = "";
+            document.getElementById('catKeys').value = "";
+            document.getElementById('catDesc').value = "";
+            document.getElementById('catSingle').checked = false;
+        }
+    }
+
+    function addSubGroupRow(data = {id:'', label:'', keys:[]}) {
+        const div = document.createElement('div');
+        div.className = 'subgroup-box';
+        div.innerHTML = `
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:10px;">
+                <input type="text" class="sub-id" placeholder="ID (فرعي)" value="${data.id}">
+                <input type="text" class="sub-label" placeholder="اسم المجموعة" value="${data.label}">
+            </div>
+            <input type="text" class="sub-keys" placeholder="الكلمات المفتاحية للمجموعة (فاصلة)" value="${data.keys.join(', ')}">
+            <button class="btn-delete" style="position:absolute; top:5px; left:5px; padding:2px 5px; font-size:10px; border-radius:3px;" onclick="this.parentElement.remove()">X</button>
+        `;
+        document.getElementById('subgroupsList').appendChild(div);
+    }
+
+    async function saveToGitHub() {
+        const idx = document.getElementById('editIndex').value;
+        
+        const newCat = {
+            id: document.getElementById('catId').value,
+            label: document.getElementById('catLabel').value,
+            icon: document.getElementById('catIcon').value,
+            keys: document.getElementById('catKeys').value.split(',').map(k => k.trim()).filter(k => k),
+            singleAccount: document.getElementById('catSingle').checked,
+            description: document.getElementById('catDesc').value,
+            subGroups: []
+        };
+
+        document.querySelectorAll('.subgroup-box').forEach(box => {
+            newCat.subGroups.push({
+                id: box.querySelector('.sub-id').value,
+                label: box.querySelector('.sub-label').value,
+                keys: box.querySelector('.sub-keys').value.split(',').map(k => k.trim()).filter(k => k)
+            });
+        });
+
+        if (idx === "") {
+            categories.push(newCat);
+        } else {
+            categories[idx] = newCat;
+        }
+
+        await commitChanges();
+    }
+
+    async function deleteCategory(index) {
+        if (!confirm("هل تريد بالتأكيد حذف هذا الكاتيغوري؟")) return;
+        categories.splice(index, 1);
+        await commitChanges();
+    }
+
+    async function commitChanges() {
+        showLoading(true);
+        // تنسيق الكود ليصبح مطابقاً لملفك تماماً
+        const formattedArray = categories.map(cat => {
+            return `{\n    id: "${cat.id}",\n\n    label: "${cat.label}",\n\n    icon: "${cat.icon}",\n\n    keys: ${JSON.stringify(cat.keys, null, 8).replace(/]$/, '    ]')},\n\n    singleAccount: ${cat.singleAccount},\n\n    description: "${cat.description}",\n\n    subGroups: ${JSON.stringify(cat.subGroups, null, 8).replace(/]$/, '    ]')}\n}`;
+        }).join(',\n                \n                ');
+
+        const finalFileContent = `const FIXED_CATEGORIES = [\n                ${formattedArray}\n];`;
+
+        try {
+            const url = `https://api.github.com/repos/${GH_CONFIG.owner}/${GH_CONFIG.repo}/contents/${GH_CONFIG.path}`;
+            const res = await fetch(url, {
+                method: 'PUT',
+                headers: { 
+                    'Authorization': `token ${GH_CONFIG.token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: "Update categories via dashboard",
+                    content: toB64(finalFileContent),
+                    sha: fileSHA
+                })
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                fileSHA = data.content.sha;
+                alert("✅ تم التحديث بنجاح!");
+                closeModal();
+                renderUI();
+            } else {
+                throw new Error("فشل التحديث");
+            }
+        } catch (e) {
+            alert("خطأ: " + e.message);
+        }
+        showLoading(false);
+    }
+
+    function closeModal() { document.getElementById('catModal').style.display = 'none'; }
+    function showLoading(show) { document.getElementById('loadingOverlay').style.display = show ? 'flex' : 'none'; }
+
+    // تشغيل التطبيق
+    init();
+</script>
+
+</body>
+</html>
