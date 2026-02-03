@@ -349,7 +349,7 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
     keys: ["facebook","فايسبوك","fb","فيس بوك","فايس بوك","فيسبوك","لايكات على تعليق فيسبوك"],
     subGroups: [
       { id: "followers", label: "متابعين", keys: ["followers","متابع","متابعين"] },
-      { id: "likes", label: "لايكات على منشور", keys: ["likes","like","لايكات","لايك","اعجاب","اعجابات"] },
+      { id: "likes", label: "لايكات على منشور", keys: ["likes","like","لايكات","لايك","اعجاب","اعجابات","تفاعل"] },
       { id: "comment likes", label: "لايكات على تعليق", keys: ["comment likes","comment like","لايكات على تعليق فيسبوك"] },
       { id: "views", label: "مشاهدات", keys: ["views","مشاهدة","مشاهدات"] },
       { id: "comments", label: "تعليقات", keys: ["comments","تعليق"] },
