@@ -592,7 +592,7 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
     subGroups: [    
       { id: "followers", label: "متابعين", keys: ["followers","متابع"] },    
       { id: "likes", label: "لايكات", keys: ["likes","like"] },   
-     { id: "views", label: "مشاهدات فيديوهات الريلز", keys: ["Reels","Reel Views","ريلز","Reels Video"] },    
+     { id: "Reels-views", label: "مشاهدات فيديوهات الريلز", keys: ["Reels","Reel Views","ريلز","Reels Video"] },    
       { id: "views", label: "مشاهدات", keys: ["views","مشاهدة"] },    
       { id: "comments", label: "تعليقات", keys: ["comments","تعليق"] },    
       { id: "stories", label: "ستوري", keys: ["story","stories","ستوري"] }    
