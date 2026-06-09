@@ -324,6 +324,7 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
     subGroups: [
       { id: "followers", label: "متابعين", keys: ["followers","متابع","متابعين"] },
       { id: "likes", label: "لايكات", keys: ["likes","like","لايكات","لايك"] },
+      { id: "views", label: "مشاهدات فيديوهات الريلز", keys: ["Reels","Reel Views","ريلز","Reels Video"] },    
       { id: "views", label: "مشاهدات", keys: ["views","مشاهدة","مشاهدات"] },
       { id: "comments", label: "تعليقات", keys: ["comments","تعليق","تعليقات"] },
       { id: "stories", label: "ستوري", keys: ["story","stories","ستوري"] }
@@ -346,11 +347,11 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
     id: "facebook", 
     label: "Facebook", 
     icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/facebook.svg", // شعار Facebook الرسمي 
-    keys: ["facebook","فايسبوك","fb","فيس بوك","فايس بوك","فيسبوك","لايكات على تعليق فيسبوك"],
+    keys: ["facebook","فايسبوك","fb","فيس بوك","فايس بوك"],
     subGroups: [
       { id: "followers", label: "متابعين", keys: ["followers","متابع","متابعين"] },
-      { id: "likes", label: "لايكات على منشور", keys: ["likes","like","لايكات","لايك","اعجاب","اعجابات","تفاعل"] },
-      { id: "comment likes", label: "لايكات على تعليق", keys: ["comment likes","comment like","لايكات على تعليق فيسبوك"] },
+      { id: "likes", label: "لايكات على منشور", keys: ["likes","like","لايكات","لايك","اعجاب","اعجابات"] },
+      { id: "comment likes", label: "لايكات على تعليق", keys: ["comment likes","comment like"] },
       { id: "views", label: "مشاهدات", keys: ["views","مشاهدة","مشاهدات"] },
       { id: "comments", label: "تعليقات", keys: ["comments","تعليق"] },
       { id: "stories", label: "ستوري", keys: ["story","stories","ستوري"] }
@@ -590,7 +591,8 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
     keys: ["instagram","انستغرام","ig "],    
     subGroups: [    
       { id: "followers", label: "متابعين", keys: ["followers","متابع"] },    
-      { id: "likes", label: "لايكات", keys: ["likes","like"] },    
+      { id: "likes", label: "لايكات", keys: ["likes","like"] },   
+     { id: "views", label: "مشاهدات فيديوهات الريلز", keys: ["Reels","Reel Views","ريلز","Reels Video"] },    
       { id: "views", label: "مشاهدات", keys: ["views","مشاهدة"] },    
       { id: "comments", label: "تعليقات", keys: ["comments","تعليق"] },    
       { id: "stories", label: "ستوري", keys: ["story","stories","ستوري"] }    
@@ -993,5 +995,61 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
   subGroups: [    
     { id: "subscriptions", label: "اشتراكات مميزة", keys: ["premium","مميز","pro subscription"] }    
   ]    
+},
+   
+                
+                
+                
+                
+                
+                
+  // 1. كاتيجوري إعلانات إنستغرام الممولة
+{ 
+    id: "instagram_ads", 
+    label: "إعلانات إنستغرام الممولة", 
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/instagram.svg", 
+    keys: ["إعلانات إنستغرام", "انستغرام اعلانات", "ممول انستقرام", "عرب حقيقي من الاعلانات", "instagram ads", "ممول"],
+    description: "📈 حملات ترويجية وإعلانات ممولة على إنستغرام - متابعين وتفاعل حقيقي 100% من الإعلانات الرسمية",
+    subGroups: [
+        { id: "followers", label: "متابعين حقيقيين (إعلانات)", keys: ["متابعين", "followers", "عرب حقيقي", "ممول من الاعلانات"] },
+        { id: "likes", label: "لايكات وإعجابات ممولة", keys: ["لايكات", "likes", "اعجاب", "ممول"] },
+        { id: "views", label: "مشاهدات ريلز وفيديو ممولة", keys: ["مشاهدات", "views", "مشاهدة", "ريلز"] }
+    ]
+},
+
+// 2. كاتيجوري إعلانات فيسبوك الممولة
+{ 
+    id: "facebook_ads", 
+    label: "إعلانات فيسبوك الممولة", 
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/facebook.svg", 
+    keys: ["إعلانات فيسبوك", "فايسبوك اعلانات", "ممول فيسبوك", "facebook ads", "ترويج فيسبوك"],
+    description: "📢 إعلانات وحملات ممولة رسمية على منصة فيسبوك لزيادة المتابعين الحقيقيين ونسب التفاعل",
+    subGroups: [
+        { id: "followers", label: "متابعين ومعجبين بالصفحة (إعلانات)", keys: ["متابعين", "followers", "لايكات صفحة", "معجبين"] },
+        { id: "likes", label: "تفاعل ولايكات منشورات ممولة", keys: ["لايكات", "likes", "تفاعل", "منشور"] },
+        { id: "views", label: "مشاهدات فيديو وريلز ممولة", keys: ["مشاهدات", "views", "فيديو", "video"] }
+    ]
+},
+
+// 3. كاتيجوري إعلانات تيك توك الممولة
+{ 
+    id: "tiktok_ads", 
+    label: "إعلانات تيك توك الممولة", 
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/tiktok.svg", 
+    keys: ["إعلانات تيك توك", "تيك توك اعلانات", "ممول تيك توك", "tiktok ads", "ترويج تيك توك"],
+    description: "🚀 حملات إعلانية ممولة وترويج رسمي على تيك توك لرفع المشاهدات والمتابعين بشكل حقيقي وآمن",
+    subGroups: [
+        { id: "followers", label: "متابعين حقيقيين (ترويج رسمي)", keys: ["متابعين", "followers", "متابع", "ترويج"] },
+        { id: "views", label: "مشاهدات ممولة حقيقية", keys: ["مشاهدات", "views", "مشاهدة", "ترويج"] },
+        { id: "likes", label: "لايكات وتفاعل حقيقي من الإعلانات", keys: ["لايكات", "likes", "تفاعل"] }
+    ]
 }
+
+                
+                
+                
+                
+                
+                
+                
 ];
