@@ -1,4 +1,4 @@
-const FIXED_CATEGORIES = [
+        const FIXED_CATEGORIES = [
 // أضف هذا الكود في مصفوفة FIXED_CATEGORIES:
                 // استخدم الروابط الجديدة للشعارات الأصلية:
 
@@ -324,8 +324,7 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
     subGroups: [
       { id: "followers", label: "متابعين", keys: ["followers","متابع","متابعين"] },
       { id: "likes", label: "لايكات", keys: ["likes","like","لايكات","لايك"] },
-      { id: "video_views", label: "مشاهدات فيديوهات", keys: ["video views","مشاهدة فيديو","مشاهدات فيديو"] },
-      { id: "reels_views", label: "مشاهدات فيديو ريلز", keys: ["reels views","مشاهدة ريلز","مشاهدات ريلز","reels"] },
+      { id: "views", label: "مشاهدات", keys: ["views","مشاهدة","مشاهدات"] },
       { id: "comments", label: "تعليقات", keys: ["comments","تعليق","تعليقات"] },
       { id: "stories", label: "ستوري", keys: ["story","stories","ستوري"] }
     ]
@@ -592,8 +591,7 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
     subGroups: [    
       { id: "followers", label: "متابعين", keys: ["followers","متابع"] },    
       { id: "likes", label: "لايكات", keys: ["likes","like"] },    
-      { id: "video_views", label: "مشاهدات فيديوهات", keys: ["video views","مشاهدة فيديو","مشاهدات فيديو"] },    
-      { id: "reels_views", label: "مشاهدات فيديو ريلز", keys: ["reels views","مشاهدة ريلز","مشاهدات ريلز","reels"] },    
+      { id: "views", label: "مشاهدات", keys: ["views","مشاهدة"] },    
       { id: "comments", label: "تعليقات", keys: ["comments","تعليق"] },    
       { id: "stories", label: "ستوري", keys: ["story","stories","ستوري"] }    
     ]    
@@ -994,41 +992,6 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
   keys: ["canva pro","كانفا برو","canva pro premium","اشتراك كانفا","canva مميز"],    
   subGroups: [    
     { id: "subscriptions", label: "اشتراكات مميزة", keys: ["premium","مميز","pro subscription"] }    
-  ]    
-},
-
-// 🚀 الفئات الجديدة لخدمات الإعلانات المضافة بناءً على طلبك:
-{     
-  id: "facebook_ads_services",     
-  label: "خدمات اعلانات فايسبوك",     
-  icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/facebook.svg",     
-  keys: ["facebook ads", "اعلانات فايسبوك", "اعلانات فيسبوك", "تمويل فيسبوك"],    
-  subGroups: [    
-    { id: "ads_followers", label: "متابعين عبر الاعلانات", keys: ["followers", "متابعين", "متابع"] },
-    { id: "ads_likes", label: "لايكات عبر الاعلانات", keys: ["likes", "لايكات", "لايك"] },
-    { id: "ads_views", label: "مشاهدات عبر الاعلانات", keys: ["views", "مشاهدات", "مشاهدة"] }
-  ]    
-},
-{     
-  id: "instagram_ads_services",     
-  label: "خدمات اعلانات انتسقرام",     
-  icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/instagram.svg",     
-  keys: ["instagram ads", "اعلانات انستقرام", "اعلانات انتسقرام", "تمويل انستقرام"],    
-  subGroups: [    
-    { id: "ads_followers", label: "متابعين عبر الاعلانات", keys: ["followers", "متابعين", "متابع"] },
-    { id: "ads_likes", label: "لايكات عبر الاعلانات", keys: ["likes", "لايكات", "لايك"] },
-    { id: "ads_views", label: "مشاهدات عبر الاعلانات", keys: ["views", "مشاهدات", "مشاهدة"] }
-  ]    
-},
-{     
-  id: "tiktok_ads_services",     
-  label: "خدمات اعلانات تيك توك",     
-  icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/tiktok.svg",     
-  keys: ["tiktok ads", "اعلانات تيك توك", "تمويل تيك توك"],    
-  subGroups: [    
-    { id: "ads_followers", label: "متابعين عبر الاعلانات", keys: ["followers", "متابعين", "متابع"] },
-    { id: "ads_likes", label: "لايكات عبر الاعلانات", keys: ["likes", "لايكات", "لايك"] },
-    { id: "ads_views", label: "مشاهدات عبر الاعلانات", keys: ["views", "مشاهدات", "مشاهدة"] }
   ]    
 }
 ];
