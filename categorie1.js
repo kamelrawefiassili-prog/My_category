@@ -993,5 +993,28 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
   subGroups: [    
     { id: "subscriptions", label: "اشتراكات مميزة", keys: ["premium","مميز","pro subscription"] }    
   ]    
-}
+},
+{ 
+    id: "instagram ADS", 
+    label: "Instagram ADS", 
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/instagram.svg", // شعار Instagram الرسمي 
+    keys: ["🎯 متابعين انستقرام ","متابعين انستقرام🎯","],
+    subGroups: [
+      { id: "ads_followers", label: "متابعين حقيقيين عبر الاعلانات", keys: ["🎯 متابعين انستقرام ","متابع","متابعين"] }
+      
+    ]
+  },
+  
+  
+  { 
+    id: "Tik tok ADS", 
+    label: "Tik tok ADS", 
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/tiktok.svg", // شعار Instagram الرسمي 
+    keys: ["🎯متابعين تيك توك","متابعين تيك توك🎯","مشاهدات تيك توك ]"],
+    subGroups: [
+      { id: "ads-followers", label: "متابعين حقيقيين عبر الاعلانات", keys: ["🎯متابعين"] },
+      { id: "ads-views", label: "مشاهدات عبر الاعلانات", keys: ["مشاهدات تيك توك","🇸🇦"] }
+   
+    ]
+  }
 ];
