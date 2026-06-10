@@ -994,27 +994,40 @@ keys: ["stickers", "sticker", "ستيكر", "ستيكرات"]
     { id: "subscriptions", label: "اشتراكات مميزة", keys: ["premium","مميز","pro subscription"] }    
   ]    
 },
-{ 
-    id: "instagram ADS", 
+  { 
+    id: "instagram_ads", 
     label: "Instagram ADS", 
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/instagram.svg", // شعار Instagram الرسمي 
-    keys: ["🎯 متابعين انستقرام","متابعين انستقرام 🎯"],
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/instagram.svg", 
+    // قمنا بإضافة نص الإعلانات المميز ليتعرف عليها النظام فوراً
+    keys: ["🎯 متابعين انستقرام", "إضافة عبر الإعلانات", "مراجعة المتابعين", "instagram ads"],
     subGroups: [
-      { id: "ads_followers", label: "متابعين حقيقيين عبر الاعلانات", keys: ["🎯 متابعين انستقرام ","متابع","متابعين"] }
-      
+      { 
+        id: "ads_followers", 
+        label: "متابعين حقيقيين عبر الاعلانات", 
+        keys: ["عبر الإعلانات", "حسابات عربية حقيقية", "متابعين"] 
+      }
     ]
   },
   
-  
   { 
-    id: "Tik tok ADS", 
+    id: "tiktok_ads", 
     label: "Tik tok ADS", 
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/tiktok.svg", // شعار Instagram الرسمي 
-    keys: ["🎯 متابعين تيك توك","متابعين تيك توك 🎯","مشاهدات تيك توك ]"],
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/tiktok.svg", 
+    // تم حذف الإيموجي الإجباري وإضافة جمل مميزة من خدمتك
+    keys: ["متابعين تيك توك", "عن طريق الاعلانات", "tik tok ads"],
     subGroups: [
-      { id: "ads-followers", label: "متابعين حقيقيين عبر الاعلانات", keys: ["🎯متابعين"] },
-      { id: "ads-views", label: "مشاهدات عبر الاعلانات", keys: ["مشاهدات تيك توك","🇸🇦"] }
+      { 
+        id: "ads-followers", 
+        label: "متابعين حقيقيين عبر الاعلانات", 
+        keys: ["عن طريق الاعلانات", "الافضل 🔥", "ضمان 30 يوم"] 
+      },
+      { 
+        id: "ads-views", 
+        label: "مشاهدات عبر الاعلانات", 
+        keys: ["مشاهدات عبر الاعلانات", "مشاهدات تيك توك"] 
+      }
    
     ]
   }
+
 ];
